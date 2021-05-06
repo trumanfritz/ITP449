@@ -1,0 +1,799 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "name": "HW1 - Basics of Python",
+      "provenance": [],
+      "collapsed_sections": []
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "uacFrEaZfcfq"
+      },
+      "source": [
+        "##### Q1. Write a program that prompts the user to enter a password then prints the length of the password.\n",
+        "\n",
+        "```\n",
+        "Enter your password: hello\n",
+        "Your password is 5 long.\n",
+        "```\n",
+        "\n",
+        "\n"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "avPyES14ftCt",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "outputId": "a736c651-7273-42c2-bb16-76611cc0ec41"
+      },
+      "source": [
+        "# Type solution here\n",
+        "pss = input(\"Enter your password: \")\n",
+        "print(\"Your password is \" + str(len(pss)) + \" character(s) long.\")"
+      ],
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "text": [
+            "Enter your password: 2\n",
+            "Your password is 1 characters long.\n"
+          ],
+          "name": "stdout"
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "behD0j_Of2TW"
+      },
+      "source": [
+        "##### Q2. Write a program that prompts the user to enter their full name then prints the number of characters in their name (do not count spaces).\n",
+        "\n",
+        "```\n",
+        "What is your name? Amulya Katti\n",
+        "Amulya Katti your name has 11 characters.\n",
+        "```"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "XSdIRjwlhSlu",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "outputId": "f8f2d37f-4fe5-4053-c86b-7e948c3d5eaf"
+      },
+      "source": [
+        "# Type solution here\n",
+        "name = input(\"What is your name?: \")\n",
+        "print(name + \" your name has \" + str(len(name.replace(\" \",\"\"))) + \" character(s).\")"
+      ],
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "text": [
+            "What is your name?: a d c d\n",
+            "a d c d your name has 4 character(s).\n"
+          ],
+          "name": "stdout"
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "5KHOWF6FhVHV"
+      },
+      "source": [
+        "##### Q3. Write a program that prompts the user to enter a month (as a number), then prints the name of the month and the number of days in that month. Ensure that the user inputs a valid month and handle any error cases.\n",
+        "\n",
+        "```\n",
+        "Enter the month number: 9\n",
+        "September has 30 days\n",
+        "```"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "KhS-SAEThyTG",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "outputId": "357c0e7f-2242-4d29-8b78-7a4d4eff1787"
+      },
+      "source": [
+        "# Type solution here\n",
+        "m = int(input(\"Please enter the month number (1-12): \"))\n",
+        "while m == 0 or m > 12:\n",
+        "  m = int(input(\"Invalid. Please enter the month number (1-12): \"))\n",
+        "\n",
+        "mos = {\"January\":31,\n",
+        "         \"February\":28,\n",
+        "         \"March\":31,\n",
+        "         \"April\":30,\n",
+        "         \"May\":31,\n",
+        "         \"June\":30,\n",
+        "         \"July\":31,\n",
+        "         \"August\":31,\n",
+        "         \"September\":30,\n",
+        "         \"October\":31,\n",
+        "         \"November\":30,\n",
+        "         \"December\":31\n",
+        "         }\n",
+        "\n",
+        "mName = list(mos.keys())[m-1]\n",
+        "mDays = mos[mName]\n",
+        "\n",
+        "print(mName + \" has \" + str(mDays) + \" days.\")"
+      ],
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "text": [
+            "Please enter the month number (1-12): 2\n",
+            "February has 28 days.\n"
+          ],
+          "name": "stdout"
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "O7lnAdGlh6Xa"
+      },
+      "source": [
+        "##### Q4. Write a program that prompts the user to enter a loan amount, annual interest rate, and number of years  for a car loan. Then calculate and print the monthly payment amount.\n",
+        "\n",
+        "Note:\n",
+        "```\n",
+        "PMT= [PV*i*((1+i)^n)]/[((1+i)^n)-1]\n",
+        "```\n",
+        "PMT is the monthly payment\n",
+        "\n",
+        "PV is the loan amount\n",
+        "\n",
+        "i is the interest rate per month in decimal form (interest rate percentage divided by 12)\n",
+        "\n",
+        "n is the number of months (term of the loan in months)\n",
+        "\n",
+        "```\n",
+        "Loan Amount: 30000.00\n",
+        "Annual Interest Rate: 4.00\n",
+        "Years: 5\n",
+        "Your monthly payment is: $552.50\n",
+        "```"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "p4B5JH5GiTs9",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "outputId": "5a7b6193-ff86-472f-d3e8-4d45ce22bf3b"
+      },
+      "source": [
+        "# Type solution here\n",
+        "pv = float(input(\"Loan amount: \"))\n",
+        "i = (float(input(\"Annual interest rate: \"))/12)/100\n",
+        "n = float(input(\"Years: \"))*12\n",
+        "pmt = round((pv*i*((1+i)**n))/(((1+i)**n)-1), 2)\n",
+        "print(\"Your monthly payment is: $\" + str(pmt))\n"
+      ],
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "text": [
+            "Loan amount: 30000\n",
+            "Annual interest rate: 4\n",
+            "Years: 5\n",
+            "Your monthly payment is: $552.496\n"
+          ],
+          "name": "stdout"
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "SjiolJKgiWV-"
+      },
+      "source": [
+        "##### Q5. Write a program to that prompts the user to enter a string. Then check whether or not the string is a palindrome.\n",
+        "\n",
+        "```\n",
+        "Enter a string: Madam\n",
+        "Madam, is a palindrome!\n",
+        "```"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "F5_M934Ri0es",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "outputId": "44140d7f-e19a-4db0-98e2-395e3cc8c6d1"
+      },
+      "source": [
+        "# Type solution here\n",
+        "inp = str(input('Please enter a string: '))\n",
+        "\n",
+        "s = inp.lower()\n",
+        "s = list(s.replace(\" \",\"\"))\n",
+        "pal = False\n",
+        "if s == s[::-1]:\n",
+        "  pal = True\n",
+        "\n",
+        "if pal:\n",
+        "  print(inp + \", is a palindrome!\")\n",
+        "else:\n",
+        "  print(inp + \", is not a palindrome!\")"
+      ],
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "text": [
+            "Please enter a string: hanhd\n",
+            "hanhd, is not a palindrome!\n"
+          ],
+          "name": "stdout"
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "BLBD6n9vkJEu"
+      },
+      "source": [
+        "##### Q6. Write a program to compute and print all possible combinations of change for \\$1. Denominations to be considered – quarter, dime, nickel, penny.\n",
+        "\n",
+        "Hint: Use nested loops (loops within loops for the various denominations of coins)\n",
+        "\n",
+        "```\n",
+        "Change for $1:\n",
+        "0 quarters, 0 dimes, 0 nickels, 100 pennies\n",
+        "…\n",
+        "4 quarters, 0 dimes, 0 nickels, 0 pennies\n",
+        "```"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "kAQsTjwDkZZ5",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "outputId": "56633717-300e-4049-f463-8db27c48e90c"
+      },
+      "source": [
+        "# Type solution here\n",
+        "print(\"Change for $1:\")\n",
+        "for q in range(0,5):\n",
+        "  for d in range(0,11):\n",
+        "    for n in range(0,21):\n",
+        "      for p in range(0,101):\n",
+        "        if q*25+d*10+n*5+p == 100:\n",
+        "          print(q, \"quarters,\", d, \"dimes,\", n, \"nickles,\", p, \"pennies\")\n"
+      ],
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "text": [
+            "Change for $1:\n",
+            "0 quarters, 0 dimes, 0 nickles, 100 pennies\n",
+            "0 quarters, 0 dimes, 1 nickles, 95 pennies\n",
+            "0 quarters, 0 dimes, 2 nickles, 90 pennies\n",
+            "0 quarters, 0 dimes, 3 nickles, 85 pennies\n",
+            "0 quarters, 0 dimes, 4 nickles, 80 pennies\n",
+            "0 quarters, 0 dimes, 5 nickles, 75 pennies\n",
+            "0 quarters, 0 dimes, 6 nickles, 70 pennies\n",
+            "0 quarters, 0 dimes, 7 nickles, 65 pennies\n",
+            "0 quarters, 0 dimes, 8 nickles, 60 pennies\n",
+            "0 quarters, 0 dimes, 9 nickles, 55 pennies\n",
+            "0 quarters, 0 dimes, 10 nickles, 50 pennies\n",
+            "0 quarters, 0 dimes, 11 nickles, 45 pennies\n",
+            "0 quarters, 0 dimes, 12 nickles, 40 pennies\n",
+            "0 quarters, 0 dimes, 13 nickles, 35 pennies\n",
+            "0 quarters, 0 dimes, 14 nickles, 30 pennies\n",
+            "0 quarters, 0 dimes, 15 nickles, 25 pennies\n",
+            "0 quarters, 0 dimes, 16 nickles, 20 pennies\n",
+            "0 quarters, 0 dimes, 17 nickles, 15 pennies\n",
+            "0 quarters, 0 dimes, 18 nickles, 10 pennies\n",
+            "0 quarters, 0 dimes, 19 nickles, 5 pennies\n",
+            "0 quarters, 0 dimes, 20 nickles, 0 pennies\n",
+            "0 quarters, 1 dimes, 0 nickles, 90 pennies\n",
+            "0 quarters, 1 dimes, 1 nickles, 85 pennies\n",
+            "0 quarters, 1 dimes, 2 nickles, 80 pennies\n",
+            "0 quarters, 1 dimes, 3 nickles, 75 pennies\n",
+            "0 quarters, 1 dimes, 4 nickles, 70 pennies\n",
+            "0 quarters, 1 dimes, 5 nickles, 65 pennies\n",
+            "0 quarters, 1 dimes, 6 nickles, 60 pennies\n",
+            "0 quarters, 1 dimes, 7 nickles, 55 pennies\n",
+            "0 quarters, 1 dimes, 8 nickles, 50 pennies\n",
+            "0 quarters, 1 dimes, 9 nickles, 45 pennies\n",
+            "0 quarters, 1 dimes, 10 nickles, 40 pennies\n",
+            "0 quarters, 1 dimes, 11 nickles, 35 pennies\n",
+            "0 quarters, 1 dimes, 12 nickles, 30 pennies\n",
+            "0 quarters, 1 dimes, 13 nickles, 25 pennies\n",
+            "0 quarters, 1 dimes, 14 nickles, 20 pennies\n",
+            "0 quarters, 1 dimes, 15 nickles, 15 pennies\n",
+            "0 quarters, 1 dimes, 16 nickles, 10 pennies\n",
+            "0 quarters, 1 dimes, 17 nickles, 5 pennies\n",
+            "0 quarters, 1 dimes, 18 nickles, 0 pennies\n",
+            "0 quarters, 2 dimes, 0 nickles, 80 pennies\n",
+            "0 quarters, 2 dimes, 1 nickles, 75 pennies\n",
+            "0 quarters, 2 dimes, 2 nickles, 70 pennies\n",
+            "0 quarters, 2 dimes, 3 nickles, 65 pennies\n",
+            "0 quarters, 2 dimes, 4 nickles, 60 pennies\n",
+            "0 quarters, 2 dimes, 5 nickles, 55 pennies\n",
+            "0 quarters, 2 dimes, 6 nickles, 50 pennies\n",
+            "0 quarters, 2 dimes, 7 nickles, 45 pennies\n",
+            "0 quarters, 2 dimes, 8 nickles, 40 pennies\n",
+            "0 quarters, 2 dimes, 9 nickles, 35 pennies\n",
+            "0 quarters, 2 dimes, 10 nickles, 30 pennies\n",
+            "0 quarters, 2 dimes, 11 nickles, 25 pennies\n",
+            "0 quarters, 2 dimes, 12 nickles, 20 pennies\n",
+            "0 quarters, 2 dimes, 13 nickles, 15 pennies\n",
+            "0 quarters, 2 dimes, 14 nickles, 10 pennies\n",
+            "0 quarters, 2 dimes, 15 nickles, 5 pennies\n",
+            "0 quarters, 2 dimes, 16 nickles, 0 pennies\n",
+            "0 quarters, 3 dimes, 0 nickles, 70 pennies\n",
+            "0 quarters, 3 dimes, 1 nickles, 65 pennies\n",
+            "0 quarters, 3 dimes, 2 nickles, 60 pennies\n",
+            "0 quarters, 3 dimes, 3 nickles, 55 pennies\n",
+            "0 quarters, 3 dimes, 4 nickles, 50 pennies\n",
+            "0 quarters, 3 dimes, 5 nickles, 45 pennies\n",
+            "0 quarters, 3 dimes, 6 nickles, 40 pennies\n",
+            "0 quarters, 3 dimes, 7 nickles, 35 pennies\n",
+            "0 quarters, 3 dimes, 8 nickles, 30 pennies\n",
+            "0 quarters, 3 dimes, 9 nickles, 25 pennies\n",
+            "0 quarters, 3 dimes, 10 nickles, 20 pennies\n",
+            "0 quarters, 3 dimes, 11 nickles, 15 pennies\n",
+            "0 quarters, 3 dimes, 12 nickles, 10 pennies\n",
+            "0 quarters, 3 dimes, 13 nickles, 5 pennies\n",
+            "0 quarters, 3 dimes, 14 nickles, 0 pennies\n",
+            "0 quarters, 4 dimes, 0 nickles, 60 pennies\n",
+            "0 quarters, 4 dimes, 1 nickles, 55 pennies\n",
+            "0 quarters, 4 dimes, 2 nickles, 50 pennies\n",
+            "0 quarters, 4 dimes, 3 nickles, 45 pennies\n",
+            "0 quarters, 4 dimes, 4 nickles, 40 pennies\n",
+            "0 quarters, 4 dimes, 5 nickles, 35 pennies\n",
+            "0 quarters, 4 dimes, 6 nickles, 30 pennies\n",
+            "0 quarters, 4 dimes, 7 nickles, 25 pennies\n",
+            "0 quarters, 4 dimes, 8 nickles, 20 pennies\n",
+            "0 quarters, 4 dimes, 9 nickles, 15 pennies\n",
+            "0 quarters, 4 dimes, 10 nickles, 10 pennies\n",
+            "0 quarters, 4 dimes, 11 nickles, 5 pennies\n",
+            "0 quarters, 4 dimes, 12 nickles, 0 pennies\n",
+            "0 quarters, 5 dimes, 0 nickles, 50 pennies\n",
+            "0 quarters, 5 dimes, 1 nickles, 45 pennies\n",
+            "0 quarters, 5 dimes, 2 nickles, 40 pennies\n",
+            "0 quarters, 5 dimes, 3 nickles, 35 pennies\n",
+            "0 quarters, 5 dimes, 4 nickles, 30 pennies\n",
+            "0 quarters, 5 dimes, 5 nickles, 25 pennies\n",
+            "0 quarters, 5 dimes, 6 nickles, 20 pennies\n",
+            "0 quarters, 5 dimes, 7 nickles, 15 pennies\n",
+            "0 quarters, 5 dimes, 8 nickles, 10 pennies\n",
+            "0 quarters, 5 dimes, 9 nickles, 5 pennies\n",
+            "0 quarters, 5 dimes, 10 nickles, 0 pennies\n",
+            "0 quarters, 6 dimes, 0 nickles, 40 pennies\n",
+            "0 quarters, 6 dimes, 1 nickles, 35 pennies\n",
+            "0 quarters, 6 dimes, 2 nickles, 30 pennies\n",
+            "0 quarters, 6 dimes, 3 nickles, 25 pennies\n",
+            "0 quarters, 6 dimes, 4 nickles, 20 pennies\n",
+            "0 quarters, 6 dimes, 5 nickles, 15 pennies\n",
+            "0 quarters, 6 dimes, 6 nickles, 10 pennies\n",
+            "0 quarters, 6 dimes, 7 nickles, 5 pennies\n",
+            "0 quarters, 6 dimes, 8 nickles, 0 pennies\n",
+            "0 quarters, 7 dimes, 0 nickles, 30 pennies\n",
+            "0 quarters, 7 dimes, 1 nickles, 25 pennies\n",
+            "0 quarters, 7 dimes, 2 nickles, 20 pennies\n",
+            "0 quarters, 7 dimes, 3 nickles, 15 pennies\n",
+            "0 quarters, 7 dimes, 4 nickles, 10 pennies\n",
+            "0 quarters, 7 dimes, 5 nickles, 5 pennies\n",
+            "0 quarters, 7 dimes, 6 nickles, 0 pennies\n",
+            "0 quarters, 8 dimes, 0 nickles, 20 pennies\n",
+            "0 quarters, 8 dimes, 1 nickles, 15 pennies\n",
+            "0 quarters, 8 dimes, 2 nickles, 10 pennies\n",
+            "0 quarters, 8 dimes, 3 nickles, 5 pennies\n",
+            "0 quarters, 8 dimes, 4 nickles, 0 pennies\n",
+            "0 quarters, 9 dimes, 0 nickles, 10 pennies\n",
+            "0 quarters, 9 dimes, 1 nickles, 5 pennies\n",
+            "0 quarters, 9 dimes, 2 nickles, 0 pennies\n",
+            "0 quarters, 10 dimes, 0 nickles, 0 pennies\n",
+            "1 quarters, 0 dimes, 0 nickles, 75 pennies\n",
+            "1 quarters, 0 dimes, 1 nickles, 70 pennies\n",
+            "1 quarters, 0 dimes, 2 nickles, 65 pennies\n",
+            "1 quarters, 0 dimes, 3 nickles, 60 pennies\n",
+            "1 quarters, 0 dimes, 4 nickles, 55 pennies\n",
+            "1 quarters, 0 dimes, 5 nickles, 50 pennies\n",
+            "1 quarters, 0 dimes, 6 nickles, 45 pennies\n",
+            "1 quarters, 0 dimes, 7 nickles, 40 pennies\n",
+            "1 quarters, 0 dimes, 8 nickles, 35 pennies\n",
+            "1 quarters, 0 dimes, 9 nickles, 30 pennies\n",
+            "1 quarters, 0 dimes, 10 nickles, 25 pennies\n",
+            "1 quarters, 0 dimes, 11 nickles, 20 pennies\n",
+            "1 quarters, 0 dimes, 12 nickles, 15 pennies\n",
+            "1 quarters, 0 dimes, 13 nickles, 10 pennies\n",
+            "1 quarters, 0 dimes, 14 nickles, 5 pennies\n",
+            "1 quarters, 0 dimes, 15 nickles, 0 pennies\n",
+            "1 quarters, 1 dimes, 0 nickles, 65 pennies\n",
+            "1 quarters, 1 dimes, 1 nickles, 60 pennies\n",
+            "1 quarters, 1 dimes, 2 nickles, 55 pennies\n",
+            "1 quarters, 1 dimes, 3 nickles, 50 pennies\n",
+            "1 quarters, 1 dimes, 4 nickles, 45 pennies\n",
+            "1 quarters, 1 dimes, 5 nickles, 40 pennies\n",
+            "1 quarters, 1 dimes, 6 nickles, 35 pennies\n",
+            "1 quarters, 1 dimes, 7 nickles, 30 pennies\n",
+            "1 quarters, 1 dimes, 8 nickles, 25 pennies\n",
+            "1 quarters, 1 dimes, 9 nickles, 20 pennies\n",
+            "1 quarters, 1 dimes, 10 nickles, 15 pennies\n",
+            "1 quarters, 1 dimes, 11 nickles, 10 pennies\n",
+            "1 quarters, 1 dimes, 12 nickles, 5 pennies\n",
+            "1 quarters, 1 dimes, 13 nickles, 0 pennies\n",
+            "1 quarters, 2 dimes, 0 nickles, 55 pennies\n",
+            "1 quarters, 2 dimes, 1 nickles, 50 pennies\n",
+            "1 quarters, 2 dimes, 2 nickles, 45 pennies\n",
+            "1 quarters, 2 dimes, 3 nickles, 40 pennies\n",
+            "1 quarters, 2 dimes, 4 nickles, 35 pennies\n",
+            "1 quarters, 2 dimes, 5 nickles, 30 pennies\n",
+            "1 quarters, 2 dimes, 6 nickles, 25 pennies\n",
+            "1 quarters, 2 dimes, 7 nickles, 20 pennies\n",
+            "1 quarters, 2 dimes, 8 nickles, 15 pennies\n",
+            "1 quarters, 2 dimes, 9 nickles, 10 pennies\n",
+            "1 quarters, 2 dimes, 10 nickles, 5 pennies\n",
+            "1 quarters, 2 dimes, 11 nickles, 0 pennies\n",
+            "1 quarters, 3 dimes, 0 nickles, 45 pennies\n",
+            "1 quarters, 3 dimes, 1 nickles, 40 pennies\n",
+            "1 quarters, 3 dimes, 2 nickles, 35 pennies\n",
+            "1 quarters, 3 dimes, 3 nickles, 30 pennies\n",
+            "1 quarters, 3 dimes, 4 nickles, 25 pennies\n",
+            "1 quarters, 3 dimes, 5 nickles, 20 pennies\n",
+            "1 quarters, 3 dimes, 6 nickles, 15 pennies\n",
+            "1 quarters, 3 dimes, 7 nickles, 10 pennies\n",
+            "1 quarters, 3 dimes, 8 nickles, 5 pennies\n",
+            "1 quarters, 3 dimes, 9 nickles, 0 pennies\n",
+            "1 quarters, 4 dimes, 0 nickles, 35 pennies\n",
+            "1 quarters, 4 dimes, 1 nickles, 30 pennies\n",
+            "1 quarters, 4 dimes, 2 nickles, 25 pennies\n",
+            "1 quarters, 4 dimes, 3 nickles, 20 pennies\n",
+            "1 quarters, 4 dimes, 4 nickles, 15 pennies\n",
+            "1 quarters, 4 dimes, 5 nickles, 10 pennies\n",
+            "1 quarters, 4 dimes, 6 nickles, 5 pennies\n",
+            "1 quarters, 4 dimes, 7 nickles, 0 pennies\n",
+            "1 quarters, 5 dimes, 0 nickles, 25 pennies\n",
+            "1 quarters, 5 dimes, 1 nickles, 20 pennies\n",
+            "1 quarters, 5 dimes, 2 nickles, 15 pennies\n",
+            "1 quarters, 5 dimes, 3 nickles, 10 pennies\n",
+            "1 quarters, 5 dimes, 4 nickles, 5 pennies\n",
+            "1 quarters, 5 dimes, 5 nickles, 0 pennies\n",
+            "1 quarters, 6 dimes, 0 nickles, 15 pennies\n",
+            "1 quarters, 6 dimes, 1 nickles, 10 pennies\n",
+            "1 quarters, 6 dimes, 2 nickles, 5 pennies\n",
+            "1 quarters, 6 dimes, 3 nickles, 0 pennies\n",
+            "1 quarters, 7 dimes, 0 nickles, 5 pennies\n",
+            "1 quarters, 7 dimes, 1 nickles, 0 pennies\n",
+            "2 quarters, 0 dimes, 0 nickles, 50 pennies\n",
+            "2 quarters, 0 dimes, 1 nickles, 45 pennies\n",
+            "2 quarters, 0 dimes, 2 nickles, 40 pennies\n",
+            "2 quarters, 0 dimes, 3 nickles, 35 pennies\n",
+            "2 quarters, 0 dimes, 4 nickles, 30 pennies\n",
+            "2 quarters, 0 dimes, 5 nickles, 25 pennies\n",
+            "2 quarters, 0 dimes, 6 nickles, 20 pennies\n",
+            "2 quarters, 0 dimes, 7 nickles, 15 pennies\n",
+            "2 quarters, 0 dimes, 8 nickles, 10 pennies\n",
+            "2 quarters, 0 dimes, 9 nickles, 5 pennies\n",
+            "2 quarters, 0 dimes, 10 nickles, 0 pennies\n",
+            "2 quarters, 1 dimes, 0 nickles, 40 pennies\n",
+            "2 quarters, 1 dimes, 1 nickles, 35 pennies\n",
+            "2 quarters, 1 dimes, 2 nickles, 30 pennies\n",
+            "2 quarters, 1 dimes, 3 nickles, 25 pennies\n",
+            "2 quarters, 1 dimes, 4 nickles, 20 pennies\n",
+            "2 quarters, 1 dimes, 5 nickles, 15 pennies\n",
+            "2 quarters, 1 dimes, 6 nickles, 10 pennies\n",
+            "2 quarters, 1 dimes, 7 nickles, 5 pennies\n",
+            "2 quarters, 1 dimes, 8 nickles, 0 pennies\n",
+            "2 quarters, 2 dimes, 0 nickles, 30 pennies\n",
+            "2 quarters, 2 dimes, 1 nickles, 25 pennies\n",
+            "2 quarters, 2 dimes, 2 nickles, 20 pennies\n",
+            "2 quarters, 2 dimes, 3 nickles, 15 pennies\n",
+            "2 quarters, 2 dimes, 4 nickles, 10 pennies\n",
+            "2 quarters, 2 dimes, 5 nickles, 5 pennies\n",
+            "2 quarters, 2 dimes, 6 nickles, 0 pennies\n",
+            "2 quarters, 3 dimes, 0 nickles, 20 pennies\n",
+            "2 quarters, 3 dimes, 1 nickles, 15 pennies\n",
+            "2 quarters, 3 dimes, 2 nickles, 10 pennies\n",
+            "2 quarters, 3 dimes, 3 nickles, 5 pennies\n",
+            "2 quarters, 3 dimes, 4 nickles, 0 pennies\n",
+            "2 quarters, 4 dimes, 0 nickles, 10 pennies\n",
+            "2 quarters, 4 dimes, 1 nickles, 5 pennies\n",
+            "2 quarters, 4 dimes, 2 nickles, 0 pennies\n",
+            "2 quarters, 5 dimes, 0 nickles, 0 pennies\n",
+            "3 quarters, 0 dimes, 0 nickles, 25 pennies\n",
+            "3 quarters, 0 dimes, 1 nickles, 20 pennies\n",
+            "3 quarters, 0 dimes, 2 nickles, 15 pennies\n",
+            "3 quarters, 0 dimes, 3 nickles, 10 pennies\n",
+            "3 quarters, 0 dimes, 4 nickles, 5 pennies\n",
+            "3 quarters, 0 dimes, 5 nickles, 0 pennies\n",
+            "3 quarters, 1 dimes, 0 nickles, 15 pennies\n",
+            "3 quarters, 1 dimes, 1 nickles, 10 pennies\n",
+            "3 quarters, 1 dimes, 2 nickles, 5 pennies\n",
+            "3 quarters, 1 dimes, 3 nickles, 0 pennies\n",
+            "3 quarters, 2 dimes, 0 nickles, 5 pennies\n",
+            "3 quarters, 2 dimes, 1 nickles, 0 pennies\n",
+            "4 quarters, 0 dimes, 0 nickles, 0 pennies\n"
+          ],
+          "name": "stdout"
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "rUPDjYiIkbgs"
+      },
+      "source": [
+        "##### Q7. Ask the user to enter two positive integers between 1 and 100. Read those integers. Then output a multiplication table of the first number times the second number. \n",
+        "\n",
+        "Note: You have to ensure the entered numbers are between 1 and 100 only.\n",
+        "\n",
+        "```\n",
+        "Please enter an integer: 5\n",
+        "Please enter another integer: 20\n",
+        "5 x 1 = 5\n",
+        "5 x 2 = 10\n",
+        "5 x 3 = 15\n",
+        "…\n",
+        "5 x 20 = 100\n",
+        "```"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "Qg0Orv1klHzA",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "outputId": "f5daacf8-241e-40ac-e5f0-3d41f24e27a6"
+      },
+      "source": [
+        "# Type solution here\n",
+        "n1 = int(input(\"Please enter an integer: \"))\n",
+        "n2 = int(input(\"Please enter another integer: \"))\n",
+        "for i in range(1,n2+1):\n",
+        "  print(n1,\"x\",i,\"=\",n1*i)"
+      ],
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "text": [
+            "Please enter an integer: 5\n",
+            "Please enter another integer: 20\n",
+            "5 x 1 = 5\n",
+            "5 x 2 = 10\n",
+            "5 x 3 = 15\n",
+            "5 x 4 = 20\n",
+            "5 x 5 = 25\n",
+            "5 x 6 = 30\n",
+            "5 x 7 = 35\n",
+            "5 x 8 = 40\n",
+            "5 x 9 = 45\n",
+            "5 x 10 = 50\n",
+            "5 x 11 = 55\n",
+            "5 x 12 = 60\n",
+            "5 x 13 = 65\n",
+            "5 x 14 = 70\n",
+            "5 x 15 = 75\n",
+            "5 x 16 = 80\n",
+            "5 x 17 = 85\n",
+            "5 x 18 = 90\n",
+            "5 x 19 = 95\n",
+            "5 x 20 = 100\n"
+          ],
+          "name": "stdout"
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "SbnbPUPTlLD9"
+      },
+      "source": [
+        "##### Q8. Write a program to ask the user to enter a password. Then check to see if it is a valid password based on these requirements -\n",
+        "\n",
+        "Must be at least 8 characters long\n",
+        "\n",
+        "Must contain both uppercase and lowercase letters\n",
+        "\n",
+        "Must contain at least one number between 0-9\n",
+        "\n",
+        "Must contain a special character -!,@,#,$\n",
+        "\n",
+        "If the password is not valid, ask the user to re-enter. This should continue until the user enters a valid password. After a valid password is entered, print Access Granted!\n",
+        "\n",
+        "```\n",
+        "Please enter a password. Follow these requirements - \n",
+        "a. Must be at least 8 characters long\n",
+        "b. Must contain both uppercase and lowercase letters\n",
+        "c. Must contain at least one number between 0-9\n",
+        "d. Must contain a special character -!,@,#,$\n",
+        "Password: HelloWorld1\n",
+        "Invalid password. Try again!\n",
+        "Password: Hello@World1\n",
+        "Access Granted!\n",
+        "```\n"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "OXmZ177Rl-RV",
+        "colab": {
+          "base_uri": "https://localhost:8080/",
+          "height": 674
+        },
+        "outputId": "f02d14e9-2ab6-451c-9218-cadee9a02484"
+      },
+      "source": [
+        "# Type solution here\n",
+        "menu = \"\"\"\n",
+        "Please enter a password. Follow these requirements -\",\n",
+        "a. Must be at least 8 characters long\n",
+        "b. Must contain both uppercase and lowercase letters\n",
+        "c. Must contain at least one number between 0-9\n",
+        "d. Must contain a special character: !,@,#,$\n",
+        "\"\"\"\n",
+        "\n",
+        "print(menu)\n",
+        "\n",
+        "# int requirements\n",
+        "A = False\n",
+        "B1 = False\n",
+        "B2 = False\n",
+        "C = False\n",
+        "D = False\n",
+        "notSet = True\n",
+        "\n",
+        "# get password and check reqs\n",
+        "while notSet:\n",
+        "  p = input(\"Password: \")\n",
+        "  if len(p) > 7:\n",
+        "    A = True\n",
+        "  for c in p:\n",
+        "    if c.isupper():\n",
+        "      B1 = True\n",
+        "    elif c.islower():\n",
+        "      B2 = True\n",
+        "    elif c.isdigit():\n",
+        "      C = True\n",
+        "    elif c in [\"!\",\"@\",\"#\",\"$\"]:\n",
+        "      D = True\n",
+        "  if A and B1 and B2 and C and D:\n",
+        "    notSet = False\n",
+        "  else:\n",
+        "    print(\"Invalid password. Try again!\")\n",
+        "\n",
+        "print(\"Access Granted!\")\n"
+      ],
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "text": [
+            "\n",
+            "Please enter a password. Follow these requirements -\",\n",
+            "a. Must be at least 8 characters long\n",
+            "b. Must contain both uppercase and lowercase letters\n",
+            "c. Must contain at least one number between 0-9\n",
+            "d. Must contain a special character -!,@,#,$\n",
+            "\n",
+            "Password: HelloWorld1\n",
+            "Invalid password. Try again!\n"
+          ],
+          "name": "stdout"
+        },
+        {
+          "output_type": "error",
+          "ename": "KeyboardInterrupt",
+          "evalue": "ignored",
+          "traceback": [
+            "\u001b[0;31m---------------------------------------------------------------------------\u001b[0m",
+            "\u001b[0;31mKeyboardInterrupt\u001b[0m                         Traceback (most recent call last)",
+            "\u001b[0;32m/usr/local/lib/python3.6/dist-packages/ipykernel/kernelbase.py\u001b[0m in \u001b[0;36m_input_request\u001b[0;34m(self, prompt, ident, parent, password)\u001b[0m\n\u001b[1;32m    728\u001b[0m             \u001b[0;32mtry\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m--> 729\u001b[0;31m                 \u001b[0mident\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mreply\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0msession\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mrecv\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mstdin_socket\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0;36m0\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m    730\u001b[0m             \u001b[0;32mexcept\u001b[0m \u001b[0mException\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n",
+            "\u001b[0;32m/usr/local/lib/python3.6/dist-packages/jupyter_client/session.py\u001b[0m in \u001b[0;36mrecv\u001b[0;34m(self, socket, mode, content, copy)\u001b[0m\n\u001b[1;32m    802\u001b[0m         \u001b[0;32mtry\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m--> 803\u001b[0;31m             \u001b[0mmsg_list\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0msocket\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mrecv_multipart\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mmode\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mcopy\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0mcopy\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m    804\u001b[0m         \u001b[0;32mexcept\u001b[0m \u001b[0mzmq\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mZMQError\u001b[0m \u001b[0;32mas\u001b[0m \u001b[0me\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n",
+            "\u001b[0;32m/usr/local/lib/python3.6/dist-packages/zmq/sugar/socket.py\u001b[0m in \u001b[0;36mrecv_multipart\u001b[0;34m(self, flags, copy, track)\u001b[0m\n\u001b[1;32m    582\u001b[0m         \"\"\"\n\u001b[0;32m--> 583\u001b[0;31m         \u001b[0mparts\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0;34m[\u001b[0m\u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mrecv\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mflags\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mcopy\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0mcopy\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0mtrack\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0mtrack\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m]\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m    584\u001b[0m         \u001b[0;31m# have first part already, only loop while more to receive\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n",
+            "\u001b[0;32mzmq/backend/cython/socket.pyx\u001b[0m in \u001b[0;36mzmq.backend.cython.socket.Socket.recv\u001b[0;34m()\u001b[0m\n",
+            "\u001b[0;32mzmq/backend/cython/socket.pyx\u001b[0m in \u001b[0;36mzmq.backend.cython.socket.Socket.recv\u001b[0;34m()\u001b[0m\n",
+            "\u001b[0;32mzmq/backend/cython/socket.pyx\u001b[0m in \u001b[0;36mzmq.backend.cython.socket._recv_copy\u001b[0;34m()\u001b[0m\n",
+            "\u001b[0;32m/usr/local/lib/python3.6/dist-packages/zmq/backend/cython/checkrc.pxd\u001b[0m in \u001b[0;36mzmq.backend.cython.checkrc._check_rc\u001b[0;34m()\u001b[0m\n",
+            "\u001b[0;31mKeyboardInterrupt\u001b[0m: ",
+            "\nDuring handling of the above exception, another exception occurred:\n",
+            "\u001b[0;31mKeyboardInterrupt\u001b[0m                         Traceback (most recent call last)",
+            "\u001b[0;32m<ipython-input-49-21b70c000506>\u001b[0m in \u001b[0;36m<module>\u001b[0;34m()\u001b[0m\n\u001b[1;32m     20\u001b[0m \u001b[0;31m# get password and check reqs\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m     21\u001b[0m \u001b[0;32mwhile\u001b[0m \u001b[0mnotSet\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m---> 22\u001b[0;31m   \u001b[0mp\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0minput\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m\"Password: \"\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m     23\u001b[0m   \u001b[0;32mif\u001b[0m \u001b[0mlen\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mp\u001b[0m\u001b[0;34m)\u001b[0m \u001b[0;34m>\u001b[0m \u001b[0;36m7\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m     24\u001b[0m     \u001b[0mA\u001b[0m \u001b[0;34m=\u001b[0m \u001b[0;32mTrue\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n",
+            "\u001b[0;32m/usr/local/lib/python3.6/dist-packages/ipykernel/kernelbase.py\u001b[0m in \u001b[0;36mraw_input\u001b[0;34m(self, prompt)\u001b[0m\n\u001b[1;32m    702\u001b[0m             \u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0m_parent_ident\u001b[0m\u001b[0;34m,\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    703\u001b[0m             \u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0m_parent_header\u001b[0m\u001b[0;34m,\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m--> 704\u001b[0;31m             \u001b[0mpassword\u001b[0m\u001b[0;34m=\u001b[0m\u001b[0;32mFalse\u001b[0m\u001b[0;34m,\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m    705\u001b[0m         )\n\u001b[1;32m    706\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n",
+            "\u001b[0;32m/usr/local/lib/python3.6/dist-packages/ipykernel/kernelbase.py\u001b[0m in \u001b[0;36m_input_request\u001b[0;34m(self, prompt, ident, parent, password)\u001b[0m\n\u001b[1;32m    732\u001b[0m             \u001b[0;32mexcept\u001b[0m \u001b[0mKeyboardInterrupt\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    733\u001b[0m                 \u001b[0;31m# re-raise KeyboardInterrupt, to truncate traceback\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m--> 734\u001b[0;31m                 \u001b[0;32mraise\u001b[0m \u001b[0mKeyboardInterrupt\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m    735\u001b[0m             \u001b[0;32melse\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    736\u001b[0m                 \u001b[0;32mbreak\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n",
+            "\u001b[0;31mKeyboardInterrupt\u001b[0m: "
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "-0sdutTDnTKA"
+      },
+      "source": [
+        "##### Q9. Given the score sheet of participants in a competition, you are required to find the runner-up score. You are given scores in a list. Find the score of the runner-up.\n",
+        "\n",
+        "```\n",
+        "list1 - [2, 3, 6, 6, 5]\n",
+        "runner_up - 5\n",
+        "\n",
+        "list2 - [1, 7, 5, 3, 10, 4, 5, 5, 6, 11]\n",
+        "runner_up - 10\n",
+        "```"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "id": "12YP9OaqpGRK",
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "outputId": "b228de9f-9bbe-423a-bf22-408014308480"
+      },
+      "source": [
+        "# Type solution here\n",
+        "list = [1, 7, 5, 3, 10, 4, 5, 5, 6, 11]\n",
+        "\n",
+        "l = list\n",
+        "for i in range(0,l.count(max(l))):\n",
+        "  l.remove(max(l))\n",
+        "\n",
+        "runner_up = max(l)\n",
+        "print(runner_up)"
+      ],
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "text": [
+            "10\n"
+          ],
+          "name": "stdout"
+        }
+      ]
+    }
+  ]
+}
